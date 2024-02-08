@@ -1,20 +1,26 @@
-// const data = require('./mockData')
-// const mockData = require('./data.js')
+
 
 const mockData = [
     {
-        "title": "Test blogpost 1",
+        "title": "My journey with Azure",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         "created": "",
         "id": 1
     },
     {
-        "title": "Test blogpost 1",
+        "title": "Learning Next.js and Node",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         "created": "",
         "id": 2
+    },
+    {
+        "title": "Deploying to Azure",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "created": "",
+        "id": 3
     }
 ]
+
 const cors = require('cors');
 
 const express = require('express')
@@ -22,7 +28,7 @@ const app = express()
 
 app.use(express.json())
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: 'http://localhost:5173'
 }));
 
 app.get('/', (req, res) => {
@@ -51,8 +57,6 @@ app.put('/api/blogposts/:id', (req, res) => {
 })
 
 app.post('/api/blogposts', (req, res) => {
-    console.log("req: ", req)
-    console.log("req.body: ", req.body)
     const post = {
         id: mockData.length + 1,
         title: req.body.title,
@@ -60,7 +64,6 @@ app.post('/api/blogposts', (req, res) => {
         created: ""
     }
     mockData.push(post)
-    console.log("mockdata post: ", mockData)
     res.send(post)
 })
 
